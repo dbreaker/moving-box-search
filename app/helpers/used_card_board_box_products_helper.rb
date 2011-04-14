@@ -1,0 +1,2 @@
+module UsedCardBoardBoxProductsHelper
+end

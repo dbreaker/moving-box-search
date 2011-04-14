@@ -1,0 +1,2 @@
+module BoxChoicesHelper
+end

@@ -1,0 +1,25 @@
+<%= form_for(@box_choice) do |f| %>
+  <% if @box_choice.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@box_choice.errors.count, "error") %> prohibited this box_choice from being saved:</h2>
+
+      <ul>
+      <% @box_choice.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :move_size_id %><br />
+    <%= f.text_field :move_size_id %>
+  </div>
+  <div class="field">
+    <%= f.label :used_card_board_box_product_id %><br />
+    <%= f.text_field :used_card_board_box_product_id %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

@@ -1,0 +1,31 @@
+<h1>Listing <%= @used_card_board_box_products.size %> used_card_board_box_products</h1>
+
+<table>
+  <tr>
+    <th>ID</th>
+    <th>Name</th>
+    <th>Image</th>
+    <th>Price</th>
+    <th>Description</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @used_card_board_box_products.each do |used_card_board_box_product| %>
+  <tr>
+    <td><%= used_card_board_box_product.product_id %></td>
+    <td><%= used_card_board_box_product.name %></td>
+    <td><%= link_to(image_tag(used_card_board_box_product.thumbnail_url), used_card_board_box_product.link) %></td>
+    <td><%= number_to_currency(used_card_board_box_product.price) %></td>
+    <td><%=  %></td>
+    <td><%= link_to 'Show', used_card_board_box_product %></td>
+    <td><%= link_to 'Edit', edit_used_card_board_box_product_path(used_card_board_box_product) %></td>
+    <td><%= link_to 'Destroy', used_card_board_box_product, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Used card board box product', new_used_card_board_box_product_path %>

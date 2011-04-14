@@ -1,0 +1,25 @@
+<h1>Listing box_choices</h1>
+
+<table>
+  <tr>
+    <th>Move size</th>
+    <th>Used card board box product</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @box_choices.each do |box_choice| %>
+  <tr>
+    <td><%= box_choice.move_size_id %></td>
+    <td><%= box_choice.used_card_board_box_product_id %></td>
+    <td><%= link_to 'Show', box_choice %></td>
+    <td><%= link_to 'Edit', edit_box_choice_path(box_choice) %></td>
+    <td><%= link_to 'Destroy', box_choice, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Box choice', new_box_choice_path %>

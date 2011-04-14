@@ -1,0 +1,26 @@
+<h1>Showing Move Size</h1>
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Home size:</b>
+  <%= @move_size.home_size %>
+</p>
+
+<p>
+  <b>Pounds:</b>
+  <%= @move_size.pounds %>
+</p>
+
+<p>
+  <b>These Moving Box Products Apply to this Move Size:</b>
+	<ul>
+	<% @move_size.used_card_board_box_products.each do |p|%>
+  		<li><%= p.name %></li>
+	<% end %>
+	</ul>
+</p>
+
+
+
+<%= link_to 'Edit', edit_move_size_path(@move_size) %> |
+<%= link_to 'Back', move_sizes_path %>

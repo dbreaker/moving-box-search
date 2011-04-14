@@ -1,0 +1,40 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Product:</b>
+  <%= @used_card_board_box_product.product_id %>
+</p>
+
+<p>
+  <b>Name:</b>
+  <%= @used_card_board_box_product.name %>
+</p>
+
+<p>
+  <b>Company name:</b>
+  <%= @used_card_board_box_product.company_name %>
+</p>
+
+<p>
+  <b>Link:</b>
+  <%= @used_card_board_box_product.link %>
+</p>
+
+<p>
+  <b>Image url:</b>
+  <%= @used_card_board_box_product.image_url %>
+</p>
+
+<p>
+  <b>Price:</b>
+  <%= @used_card_board_box_product.price %>
+</p>
+
+<p>
+  <b>Description:</b>
+  <%= @used_card_board_box_product.description %>
+</p>
+
+
+<%= link_to 'Edit', edit_used_card_board_box_product_path(@used_card_board_box_product) %> |
+<%= link_to 'Back', used_card_board_box_products_path %>
