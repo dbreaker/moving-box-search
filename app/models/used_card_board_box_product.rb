@@ -7,6 +7,32 @@ class UsedCardBoardBoxProduct < ActiveRecord::Base
 
   validates_uniqueness_of :product_id
   
+  def self.find_bad_length
+    infile = "22817.txt"
+        trends = File.open(infile)
+        started_reading_data = false
+        keep_reading_data = true
+        count = 0
+    #    trends.each_line do |line|
+    #      count += 1
+    #      puts line
+    #      puts "read line #{count}"
+    #      line_array = line.split("|")
+    #    end
+      CSV.foreach(infile, { :col_sep => "|"}) do |row|
+        puts "row 0 too long" if row[0].length > 250
+        puts ":name" if row[1].length > 250
+        puts ":company_name" if row[3].length > 250
+        puts ":link" if row[4].length > 200
+        puts ":image_url" if row[6].length > 200
+        puts ":price" if row[7].length > 200
+        puts ":description" if row[11].length > 200
+        puts ":merchant_id" if row[2].length > 200
+        puts ":thumbnail_url" if row[5].length > 200
+        puts ":instock_status" if row[18].length > 200
+      end
+  end
+  
   def self.import_data_file
     #put in ftp stuff to get file
         infile = "22817.txt"
@@ -27,7 +53,7 @@ class UsedCardBoardBoxProduct < ActiveRecord::Base
 #      puts "read line #{count}"
 #      line_array = line.split("|")
 #    end
-    CSV.foreach(infile, { :col_sep => "|"}) do |row|
+    CSV.foreach(infile, { :col_sep => '|'}) do |row|
       prd = UsedCardBoardBoxProduct.find_by_product_id(row[0])
       if !prd
         prd = UsedCardBoardBoxProduct.create(
