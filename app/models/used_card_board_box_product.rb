@@ -35,24 +35,13 @@ class UsedCardBoardBoxProduct < ActiveRecord::Base
   
   def self.import_data_file
     #put in ftp stuff to get file
-        infile = "ucbb.csv"
-#        File.open(infile, 'r') do |f1|  
-#          while line = f1.gets  
-#            f2.puts line.gsub(/\"/,"")
-#          end  
-#        end  
+    infile = "ucbb_products.csv"
 
     puts "processing file"
     trends = File.open(infile)
     started_reading_data = false
     keep_reading_data = true
     count = 0
-#    trends.each_line do |line|
-#      count += 1
-#      puts line
-#      puts "read line #{count}"
-#      line_array = line.split("|")
-#    end
     CSV.foreach(infile) do |row|
       prd = UsedCardBoardBoxProduct.find_by_product_id(row[0])
       if !prd
