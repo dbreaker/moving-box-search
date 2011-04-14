@@ -70,7 +70,6 @@ class UsedCardBoardBoxProduct < ActiveRecord::Base
         prd.save!
       end
       puts "INFO: created product #{prd.name}"
-      puts y prd
     end
   end
 
