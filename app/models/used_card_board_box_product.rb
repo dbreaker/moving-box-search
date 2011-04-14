@@ -35,7 +35,7 @@ class UsedCardBoardBoxProduct < ActiveRecord::Base
   
   def self.import_data_file
     #put in ftp stuff to get file
-        infile = "22817.txt"
+        infile = "ucbb.csv"
 #        File.open(infile, 'r') do |f1|  
 #          while line = f1.gets  
 #            f2.puts line.gsub(/\"/,"")
@@ -53,7 +53,7 @@ class UsedCardBoardBoxProduct < ActiveRecord::Base
 #      puts "read line #{count}"
 #      line_array = line.split("|")
 #    end
-    CSV.foreach(infile, { :col_sep => '|'}) do |row|
+    CSV.foreach(infile) do |row|
       prd = UsedCardBoardBoxProduct.find_by_product_id(row[0])
       if !prd
         prd = UsedCardBoardBoxProduct.create(
