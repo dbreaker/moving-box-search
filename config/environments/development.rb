@@ -24,6 +24,16 @@ Movingboxsearch::Application.configure do
   config.action_dispatch.best_standards_support = :builtin
 
   config.action_mailer.default_url_options = { :host => 'localhost:3000' }
-
+=begin
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = {
+    :address              => "smtp.gmail.com",
+    :port                 => 587,
+    :domain               => 'localhost:3000',
+    :user_name            => 'dbreaker',
+    :password             => 'gmail4me',
+    :authentication       => 'plain',
+    :enable_starttls_auto => true  }
+=end
 end
 
