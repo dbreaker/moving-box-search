@@ -1,12 +1,16 @@
 <p id="notice"><%= notice %></p>
 
+<h2>Your Move:</h2>
 <p>
   <b>Move date:</b>
-  <%= @search.move_date %>
+  <%= @search.move_date.strftime("%b %d %Y") %>
+	<br/>
+  <b>Move size:</b>
+  <%= @search.move_size.home_size %>
 </p>
 
-<%= link_to 'Edit', edit_search_path(@search) %> |
-<%= link_to 'Back', searches_path %>
+<%= link_to 'Modify Search', edit_search_path(@search) %> |
+<%= link_to 'Start Over', searches_path %>
 
 <% if @search.move_size.used_card_board_box_products %>
 	<h2>Recommended Moving Kits</h2>
