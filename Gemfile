@@ -3,7 +3,7 @@ source 'http://rubygems.org'
 gem 'rails', '3.0.5'
 gem 'json'
 gem 'devise'
-#gem "oa-oauth", :require => "omniauth/oauth"
+gem "oa-oauth", :require => "omniauth/oauth"
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
