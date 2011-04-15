@@ -1,6 +1,9 @@
 class SearchesController < ApplicationController
+
+#  before_filter :authenticate_user!
   # GET /searches
   # GET /searches.xml
+
   def index
     @searches = Search.all
 
@@ -14,7 +17,7 @@ class SearchesController < ApplicationController
   # GET /searches/1.xml
   def show
     @search = Search.find(params[:id])
-    @results = Search.find_boxes(@search.keyword)
+#    @results = Search.find_boxes(@search.keyword)
 
     respond_to do |format|
       format.html # show.html.erb

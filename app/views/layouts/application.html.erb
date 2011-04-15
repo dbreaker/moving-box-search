@@ -7,7 +7,12 @@
   <%= csrf_meta_tag %>
 </head>
 <body>
-<h1><%= link_to "MovingBoxSearch.com", "/" %></h1>
+	<ul class="hmenu">
+	  <%= render 'devise/registration_items' %>
+	  <%= render 'devise/login_items' %>
+	</ul>
+	<h1><%= link_to "MovingBoxSearch.com", "/" %></h1>
+
 <%= yield %>
 
 </body>

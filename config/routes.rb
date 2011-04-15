@@ -1,4 +1,8 @@
 Movingboxsearch::Application.routes.draw do
+  devise_for :admins
+
+  devise_for :users
+
   resources :box_choices
 
   resources :move_sizes
