@@ -9,9 +9,9 @@ class Account < ActionMailer::Base
   def after_create(user)
     @greeting = "Hi"
 
-    mail 
-      :to => user.email, 
+    mail( 
+      :to => user.email,
       :subject => "Welcome to MovingBoxSearch.com!",
-      :bcc => "dbreaker@gmail.com"
+      :bcc => "dbreaker@gmail.com")
   end
 end
