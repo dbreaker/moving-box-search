@@ -1,0 +1,18 @@
+<h1>Account for - <%= @user.email %></h1>
+<ul>
+	<li><%= link_to('Change email/password', edit_user_registration_path) %></li>
+	<li><%= link_to('Cancel Account', edit_user_registration_path) %></li>
+</ul>
+
+<h2>Your Upcoming Move</h2>
+<% if current_user.searches.size > 0 %>
+	<p>
+	  <b>Move date:</b>
+	  <%= current_user.searches.last.move_date.strftime("%b %d %Y") %>
+		<br/>
+	  <b>Move size:</b>
+	  <%= current_user.searches.last.move_size.home_size %>
+	</p>
+<% else %>
+	<p>You have not searches for moving boxes yet.  <%= link_to "Search Now", new_search_path %></p>
+<% end %>

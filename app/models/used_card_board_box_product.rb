@@ -1,4 +1,8 @@
 require 'csv'
+require 'open-uri'
+require 'json'
+require 'openssl'
+OpenSSL::SSL::VERIFY_PEER = OpenSSL::SSL::VERIFY_NONE
 
 class UsedCardBoardBoxProduct < ActiveRecord::Base
   
@@ -71,6 +75,81 @@ class UsedCardBoardBoxProduct < ActiveRecord::Base
       end
       puts "INFO: created product #{prd.name}"
     end
+  end
+
+  def self.check_for_purchases
+    start_date = 2.days.ago.strftime("%m/%d/%Y")
+    end_date = 0.days.ago.strftime("%m/%d/%Y")
+    url = "http://shareasale-homefinder.apigee.com?"
+    url = "https://shareasale.com/x.cfm?"
+    url += "action=activity&affiliateId=398075&token=zTTUzIxaWkMdfNzJ"
+    url += "&dateStart=#{start_date}&dateEnd=#{end_date}"
+    url += "&merchantId=22817&sortCol=commission&sortDir=desc&version=1.3"
+    puts url
+    result = ""
+    new_array = []
+    begin
+      open(url) do |f|
+        result = f.read
+      end
+        results_array = result.split(/\n/)
+        results_array[1..(results_array.size - 1)].each do |line|
+          row = line.split("|")
+          if row[0] && !row[0].blank?
+            new_array << row 
+            puts "Trans ID: #{row[0]}"
+            puts "User ID: #{row[1]}"
+            puts "Merchant ID: #{row[2]}"
+            puts "Trans Date: #{row[3]}" #when they bought
+            puts "Trans Amount: #{row[4]}" #how much they paid
+            puts "Commission: #{row[5]}"
+            puts "Comment: #{row[6]}"
+            puts "Voided: #{row[7]}"
+            puts "Pending Date: #{row[8]}"
+            puts "Locked: #{row[9]}"
+            puts "Aff Comment: #{row[10]}"  #our user id will be here
+            puts "Banner Page: #{row[11]}"
+            puts "Reversal Date: #{row[12]}"
+            puts "Click Date|: #{row[13]}" #when they clicked
+            puts "Click Time: #{row[14]}"
+            puts "Banner Id: #{row[15]}"
+            puts "SKU List: #{row[16]}"
+            puts "Quantity List: #{row[17]}"
+            puts "Lock Date: #{row[18]}"
+            puts "Paid Date: #{row[19]}"
+          end
+        end
+#        puts y result
+        puts y new_array
+    rescue Exception => e
+      new_array = e
+    end
+    new_array
+  end
+  
+  def self.get_cj_stuff
+    cj_key = "008016fb41b7ac8b6bcbc3f78f8dcf58d48ebc9a40c6edd3180211a748a2662ea2e7ee115b35e5b577d7902e21802a059f79bbee9a272bfbe757123523d513c259/772e6afcbbdd4520b8c90f68b8074cdd022ec4cc2f0c8c94d31fffe9da897f2beacf6bbd177a46085627f32e34cb873a46782833ccc1a4db296faf087de9895d"
+    website_id = "3791691"
+    moveout_id = "784712"
+    home_depot_id  = '1461363 '
+    cj = CommissionJunction.new(cj_key, website_id)
+    # See http://help.cj.com/en/web_services/product_catalog_search_service_rest.htm
+     # for the list of request and response parameters.
+#     cj.product_search('keywords' => '+blue +jeans',
+#                       'advertiser-ids' => 'joined',
+#                       'serviceable-area' => 'us',
+#                       'currency' => 'usd',
+#                       'records-per-page' => '5').each do |product|
+     cj.product_search('keywords' => '+moving +boxes',
+                        'advertiser-ids' => 'joined',
+                       'serviceable-area' => 'us',
+                       'currency' => 'usd',
+                       'records-per-page' => '1000').each do |product|
+       puts product.name
+       puts product.price
+       puts product.image_url
+       puts ''
+     end
   end
 
 end

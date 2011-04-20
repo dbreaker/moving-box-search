@@ -19,7 +19,7 @@
     <%= f.label :move_size, "How Much Stuff Are You Moving?" %><br />
     <%= f.collection_select(:move_size_id, MoveSize.all, :id, :home_size) %>
   </div>
-
+	<%= f.hidden_field :user_id %>
   <div class="actions">
     <%= f.submit("Find Moving Boxes", :disable_with => "Please wait...") %>
   </div>

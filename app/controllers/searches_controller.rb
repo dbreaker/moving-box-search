@@ -17,6 +17,8 @@ class SearchesController < ApplicationController
   # GET /searches/1.xml
   def show
     @search = Search.find(params[:id])
+    session[:search_id] = @search.id
+    
 #    @results = Search.find_boxes(@search.keyword)
 
     respond_to do |format|
@@ -30,7 +32,7 @@ class SearchesController < ApplicationController
   def new
     @search = Search.new
     @search.move_date = Time.now + 7.days
-    
+    @search.user = current_user if current_user
     respond_to do |format|
       format.html # new.html.erb
       format.xml  { render :xml => @search }

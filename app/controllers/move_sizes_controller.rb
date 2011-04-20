@@ -35,7 +35,7 @@ class MoveSizesController < ApplicationController
   # GET /move_sizes/1/edit
   def edit
     @move_size = MoveSize.find(params[:id])
-    @used_card_board_box_products = UsedCardBoardBoxProduct.find(:all, :order => 'pounds')
+    @used_card_board_box_products = UsedCardBoardBoxProduct.find(:all, :order => 'price')
   end
 
   # POST /move_sizes

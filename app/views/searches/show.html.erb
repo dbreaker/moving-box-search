@@ -28,8 +28,16 @@
 				<td><%= link_to(image_tag(product.thumbnail_url), product.link) %></td>
 				<td><%= product.description %></td>
 				<td><%= number_to_currency(product.price) %></td>
-				<td><%= link_to "buy now", product.link, :target => "_blank" %></td>
-				<td><%= link_to "FREE coffee!!  Get a $5 Starbucks e-Giftcard if you sign in, then buy!", "#", :target => "_blank" %></td>
+				<td>
+					<% if user_signed_in? %>
+						<%= link_to "buy now to get your FREE Starbucks e-Giftcard", "#{product.link}&AFFTRACK=#{current_user.id}", :target => "_blank" %>
+					<% else %>
+						<%= link_to "buy now", product.link, :target => "_blank" %>
+					<% end %>
+				</td>
+				<% if !user_signed_in? %>
+				<td><%= link_to "FREE coffee!!  Get a $5 Starbucks e-Giftcard if you sign in, then buy!", new_user_registration_path %></td>
+				<% end %>
 			</tr>
 		<% end %>
 	</table>

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110415034726) do
+ActiveRecord::Schema.define(:version => 20110419125624) do
 
   create_table "admins", :force => true do |t|
     t.string   "email",                               :default => "", :null => false
@@ -50,6 +50,7 @@ ActiveRecord::Schema.define(:version => 20110415034726) do
     t.string   "location_string"
     t.string   "keyword"
     t.integer  "move_size_id"
+    t.integer  "user_id"
   end
 
   create_table "used_card_board_box_products", :force => true do |t|

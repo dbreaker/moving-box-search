@@ -1,7 +1,17 @@
 Movingboxsearch::Application.routes.draw do
+
+  match 'dashboard' => 'dashboard#index'
+
+  get "dashboard/view_users"
+  get "dashboard/login_as"
+  get "dashboard/login_as_admin"
+
+
   devise_for :admins
 
-  devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
+  devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks", :registrations => "users/registrations" }
+
+  get "accounts/show"
 
   resources :box_choices
 
@@ -10,6 +20,7 @@ Movingboxsearch::Application.routes.draw do
   resources :used_card_board_box_products
 
   resources :searches
+
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

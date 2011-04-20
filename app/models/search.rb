@@ -6,6 +6,7 @@ OpenSSL::SSL::VERIFY_PEER = OpenSSL::SSL::VERIFY_NONE
 class Search < ActiveRecord::Base
 
   belongs_to :move_size
+  belongs_to :user
   
   def self.find_boxes(keyword = nil)
     kw = "+#{keyword.gsub(' ','+')}" if keyword
