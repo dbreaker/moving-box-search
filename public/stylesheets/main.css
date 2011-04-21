@@ -1,0 +1,134 @@
+body { background-color: #fff; color: #333; }
+
+body, p, ol, ul, td {
+  font-family: verdana, arial, helvetica, sans-serif;
+  font-size:   13px;
+  line-height: 18px;
+}
+
+pre {
+  background-color: #eee;
+  padding: 10px;
+  font-size: 11px;
+}
+
+a { color: #000; }
+a:visited { color: #666; }
+a:hover { color: #fff; background-color:#000; }
+
+div.field, div.actions {
+  margin-bottom: 10px;
+}
+
+#notice {
+  color: green;
+  font-weight:bold;
+}
+#alert {
+	color:red;
+  	font-weight:bold;
+}
+.field_with_errors {
+  padding: 2px;
+  background-color: red;
+  display: table;
+}
+
+#error_explanation {
+  width: 450px;
+  border: 2px solid red;
+  padding: 7px;
+  padding-bottom: 0;
+  margin-bottom: 20px;
+  background-color: #f0f0f0;
+}
+
+#error_explanation h2 {
+  text-align: left;
+  font-weight: bold;
+  padding: 5px 5px 5px 15px;
+  font-size: 12px;
+  margin: -7px;
+  margin-bottom: 0px;
+  background-color: #c00;
+  color: #fff;
+}
+
+#error_explanation ul li {
+  font-size: 12px;
+  list-style: square;
+}
+ul.hmenu {
+  list-style: none;	
+  margin: 0 0 2em;
+  padding: 0;
+}
+
+ul.hmenu li {
+  display: inline;  
+}
+/* Styles for main page */
+#outer{
+  min-height:100%;
+  width:100%;
+  position:relative;
+}
+#header {
+  background:white;
+  height:120px;
+  border-bottom: 10px #007730 solid;
+}
+#header_image {
+	float:left;
+	border:0px;
+}
+#header_image a:hover {
+	text-decoration:none;
+	background-color:transparent;
+}
+
+#header_title a {
+	font:calibri;
+	padding-top:65px;
+	float:left;
+	font-size:40px;
+	font-weight:bold;
+	color:black;
+	text-decoration:none;
+	background-color:white;
+}
+
+
+#header_login {
+	float:right;
+	padding-right:50px;
+	font-size:14px;
+	padding-top:90px;
+}
+
+#content {
+	padding:30px;
+}
+#footer {
+  position:absolute;
+  bottom:0;
+  left:0;
+  background:#63DB93;
+  height:40px;
+  width:100%;
+  border-top: 3px solid black;
+  border-bottom: 2px solid black;
+  text-align:center;
+	color:white;
+	font-weight:bold;
+}
+#footer a{
+color:white;
+}
+
+#clearfooter{
+    clear:both;
+    height:40px;
+}
+
+

@@ -1,17 +1,18 @@
 Movingboxsearch::Application.routes.draw do
 
-  match 'dashboard' => 'dashboard#index'
+  resources :purchases
 
-  get "dashboard/view_users"
-  get "dashboard/login_as"
-  get "dashboard/login_as_admin"
+  match 'admin' => 'admin#index'
 
+  get "admin/view_users"
+  get "admin/login_as"
+  get "admin/login_as_admin"
 
-  devise_for :admins
 
   devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks", :registrations => "users/registrations" }
 
-  get "accounts/show"
+#  get "accounts/show"
+  match "accounts/show/:id" => "accounts#show"
 
   resources :box_choices
 

@@ -1,0 +1,17 @@
+<% if user_signed_in? %>
+  <li>
+  <%= link_to('Go to Account', :controller => '/accounts', :action => 'show', :id => current_user.id) %>
+  </li>
+	<% if session[:admin_id] %>
+	  <li>
+	  <%= link_to('Admin', :controller => '/admin', :action => 'login_as_admin') %>
+	  </li>
+	<% end %>
+<% else %>
+  <li>
+  <%= link_to('Register', new_user_registration_path)  %>
+  </li>
+  <li>
+	<%= link_to "Sign in with Facebook", user_omniauth_authorize_path(:facebook) %>
+  </li>
+<% end %>

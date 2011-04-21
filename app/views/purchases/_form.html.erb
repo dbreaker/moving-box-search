@@ -1,0 +1,57 @@
+<%= form_for(@purchase) do |f| %>
+  <% if @purchase.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@purchase.errors.count, "error") %> prohibited this purchase from being saved:</h2>
+
+      <ul>
+      <% @purchase.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :user_id %><br />
+    <%= f.text_field :user_id %>
+  </div>
+  <div class="field">
+    <%= f.label :aff_transaction_id %><br />
+    <%= f.text_field :aff_transaction_id %>
+  </div>
+  <div class="field">
+    <%= f.label :aff_merchant_id %><br />
+    <%= f.text_field :aff_merchant_id %>
+  </div>
+  <div class="field">
+    <%= f.label :transaction_date %><br />
+    <%= f.datetime_select :transaction_date %>
+  </div>
+  <div class="field">
+    <%= f.label :transaction_amount %><br />
+    <%= f.text_field :transaction_amount %>
+  </div>
+  <div class="field">
+    <%= f.label :click_datetime %><br />
+    <%= f.datetime_select :click_datetime %>
+  </div>
+  <div class="field">
+    <%= f.label :aff_comment %><br />
+    <%= f.text_field :aff_comment %>
+  </div>
+  <div class="field">
+    <%= f.label :starbucks_amount_purchased %><br />
+    <%= f.text_field :starbucks_amount_purchased %>
+  </div>
+  <div class="field">
+    <%= f.label :starbucks_sent_to_email %><br />
+    <%= f.text_field :starbucks_sent_to_email %>
+  </div>
+  <div class="field">
+    <%= f.label :starbucks_confirmation_number %><br />
+    <%= f.text_field :starbucks_confirmation_number %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

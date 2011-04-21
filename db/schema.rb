@@ -10,24 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110420014838) do
-
-  create_table "admins", :force => true do |t|
-    t.string   "email",                               :default => "", :null => false
-    t.string   "encrypted_password",   :limit => 128, :default => "", :null => false
-    t.string   "reset_password_token"
-    t.datetime "remember_created_at"
-    t.integer  "sign_in_count",                       :default => 0
-    t.datetime "current_sign_in_at"
-    t.datetime "last_sign_in_at"
-    t.string   "current_sign_in_ip"
-    t.string   "last_sign_in_ip"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "admins", ["email"], :name => "index_admins_on_email", :unique => true
-  add_index "admins", ["reset_password_token"], :name => "index_admins_on_reset_password_token", :unique => true
+ActiveRecord::Schema.define(:version => 20110420220419) do
 
   create_table "box_choices", :force => true do |t|
     t.integer  "move_size_id"
@@ -39,6 +22,21 @@ ActiveRecord::Schema.define(:version => 20110420014838) do
   create_table "move_sizes", :force => true do |t|
     t.string   "home_size"
     t.integer  "pounds"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "purchases", :force => true do |t|
+    t.integer  "user_id"
+    t.string   "aff_transaction_id"
+    t.string   "aff_merchant_id"
+    t.datetime "transaction_date"
+    t.decimal  "transaction_amount"
+    t.datetime "click_datetime"
+    t.string   "aff_comment"
+    t.string   "starbucks_amount_purchased"
+    t.string   "starbucks_sent_to_email"
+    t.string   "starbucks_confirmation_number"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -69,8 +67,8 @@ ActiveRecord::Schema.define(:version => 20110420014838) do
   end
 
   create_table "users", :force => true do |t|
-    t.string   "email",                               :default => "", :null => false
-    t.string   "encrypted_password",   :limit => 128, :default => "", :null => false
+    t.string   "email",                               :default => "",    :null => false
+    t.string   "encrypted_password",   :limit => 128, :default => "",    :null => false
     t.string   "reset_password_token"
     t.datetime "remember_created_at"
     t.integer  "sign_in_count",                       :default => 0
@@ -80,6 +78,7 @@ ActiveRecord::Schema.define(:version => 20110420014838) do
     t.string   "last_sign_in_ip"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "admin",                               :default => false
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true

@@ -1,0 +1,41 @@
+<h1>Listing purchases</h1>
+
+<table>
+  <tr>
+    <th>User</th>
+    <th>Aff transaction</th>
+    <th>Aff merchant</th>
+    <th>Transaction date</th>
+    <th>Transaction amount</th>
+    <th>Click datetime</th>
+    <th>Aff comment</th>
+    <th>Starbucks amount purchased</th>
+    <th>Starbucks sent to email</th>
+    <th>Starbucks confirmation number</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @purchases.each do |purchase| %>
+  <tr>
+    <td><%= purchase.user_id %></td>
+    <td><%= purchase.aff_transaction_id %></td>
+    <td><%= purchase.aff_merchant_id %></td>
+    <td><%= purchase.transaction_date %></td>
+    <td><%= purchase.transaction_amount %></td>
+    <td><%= purchase.click_datetime %></td>
+    <td><%= purchase.aff_comment %></td>
+    <td><%= purchase.starbucks_amount_purchased %></td>
+    <td><%= purchase.starbucks_sent_to_email %></td>
+    <td><%= purchase.starbucks_confirmation_number %></td>
+    <td><%= link_to 'Show', purchase %></td>
+    <td><%= link_to 'Edit', edit_purchase_path(purchase) %></td>
+    <td><%= link_to 'Destroy', purchase, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Purchase', new_purchase_path %>

@@ -12,7 +12,38 @@
 		<br/>
 	  <b>Move size:</b>
 	  <%= current_user.searches.last.move_size.home_size %>
+		<br/>
+		<%= link_to "see recommended moving box kits", current_user.searches.last %>
 	</p>
 <% else %>
 	<p>You have not searches for moving boxes yet.  <%= link_to "Search Now", new_search_path %></p>
 <% end %>
+
+<h2>Your Purchases</h2>
+<% if current_user.purchases.size > 0 %>
+	<table>
+	  <tr>
+	    <th>Transaction date</th>
+	    <th>Transaction amount</th>
+	    <th>Click datetime</th>
+	    <th>Starbucks amount purchased</th>
+	    <th>Starbucks sent to email</th>
+	    <th>Starbucks confirmation number</th>
+	  </tr>
+
+	<% current_user.purchases.each do |purchase| %>
+	  <tr>
+	    <td><%= purchase.transaction_date %></td>
+	    <td><%= purchase.transaction_amount %></td>
+	    <td><%= purchase.click_datetime %></td>
+	    <td><%= purchase.starbucks_amount_purchased %></td>
+	    <td><%= purchase.starbucks_sent_to_email %></td>
+	    <td><%= purchase.starbucks_confirmation_number %></td>
+	  </tr>
+	<% end %>
+	</table>
+<% else %>
+	<p>We have not been notified of any purchases yet.</p>
+<% end %>
+<p><i><b>*</b> If you have made a purchase in the last 24 hours that is not shown above, please check back soon.  It can take up to 24 hours for our partners to notify us of a purchase.</i></p>
+ 

@@ -1,0 +1,55 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>User:</b>
+  <%= @purchase.user_id %>
+</p>
+
+<p>
+  <b>Aff transaction:</b>
+  <%= @purchase.aff_transaction_id %>
+</p>
+
+<p>
+  <b>Aff merchant:</b>
+  <%= @purchase.aff_merchant_id %>
+</p>
+
+<p>
+  <b>Transaction date:</b>
+  <%= @purchase.transaction_date %>
+</p>
+
+<p>
+  <b>Transaction amount:</b>
+  <%= @purchase.transaction_amount %>
+</p>
+
+<p>
+  <b>Click datetime:</b>
+  <%= @purchase.click_datetime %>
+</p>
+
+<p>
+  <b>Aff comment:</b>
+  <%= @purchase.aff_comment %>
+</p>
+
+<p>
+  <b>Starbucks amount purchased:</b>
+  <%= @purchase.starbucks_amount_purchased %>
+</p>
+
+<p>
+  <b>Starbucks sent to email:</b>
+  <%= @purchase.starbucks_sent_to_email %>
+</p>
+
+<p>
+  <b>Starbucks confirmation number:</b>
+  <%= @purchase.starbucks_confirmation_number %>
+</p>
+
+
+<%= link_to 'Edit', edit_purchase_path(@purchase) %> |
+<%= link_to 'Back', purchases_path %>

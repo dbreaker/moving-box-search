@@ -1,0 +1,8 @@
+<div id="header_image"><%= link_to(image_tag("logo.png", :width => 180, :style => "border:0px;"), "/") %></div>
+<div id="header_title"><%= link_to "MovingBoxSearch.com", "/" %></div>
+<div id="header_login">
+	<ul class="hmenu">
+	  <%= render 'users/shared/registration_items' %>
+	  <%= render 'users/shared/login_items' %>
+	</ul>	
+</div>
