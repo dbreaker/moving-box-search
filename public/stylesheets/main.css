@@ -12,8 +12,8 @@ pre {
   font-size: 11px;
 }
 
-a { color: #000; }
-a:visited { color: #666; }
+a { color: #0072A1; }
+a:visited { color: #0072A1; }
 a:hover { color: #fff; background-color:#000; }
 
 div.field, div.actions {
@@ -66,7 +66,15 @@ ul.hmenu {
 
 ul.hmenu li {
   display: inline;  
+  font-color:#0072A1;
+	font-size:14px;
 }
+ul.hmenu li a{
+  color:#0072A1;
+}
+
+ul.hmenu li a:visited { color:#0072A1;}
+
 /* Styles for main page */
 #outer{
   min-height:100%;
@@ -76,7 +84,7 @@ ul.hmenu li {
 #header {
   background:white;
   height:120px;
-  border-bottom: 10px #007730 solid;
+  border-bottom: 10px #003716 solid;
 }
 #header_image {
 	float:left;
@@ -113,7 +121,7 @@ ul.hmenu li {
   position:absolute;
   bottom:0;
   left:0;
-  background:#63DB93;
+  background:#2E5C40;
   height:40px;
   width:100%;
   border-top: 3px solid black;
@@ -130,5 +138,44 @@ color:white;
     clear:both;
     height:40px;
 }
+.free_coffee {
+/*  background:url("../images/free_coffee.png") no-repeat;*/
+}
 
+a.image_link:hover {
+	text-decoration:none;
+	background-color:transparent;
+}
 
+#fb_register {
+	font-size:24px;
+	font-weight:bold;
+	
+}
+
+.money {
+	font-weight:bold;
+	font-size:16px;
+}
+#homepage_bottom {
+	margin-top: 0px;
+	padding: 0px 20px 20px 20px;
+	border-top: 3px solid gray;
+	border-bottom: 1px solid gray;
+	background-color:#dbf9bd;
+}
+
+#homepage_bottom p.subheading {
+	font-size:16px;
+	font-weight:bold;
+	font-style: italic;
+}
+
+#homepage_bottom ol {
+  	font-size: 36px;
+	font-weight: bold;
+	margin-left:50px;
+}
+#homepage_bottom li p {
+  font-size: 20px;
+}

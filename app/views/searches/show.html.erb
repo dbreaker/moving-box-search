@@ -8,33 +8,39 @@
 </p>
 
 <%= link_to 'Modify Search', edit_search_path(@search) %> |
-<%= link_to 'Start Over', searches_path %>
+<%= link_to 'Start Over', "/" %>
 
 <% if @search.move_size.used_card_board_box_products %>
 	<h2>Recommended Moving Kits</h2>
-	<table>
+	<table class="search_results">
 		<tr>
-		    <th>Name</th>
-		    <th>Image</th>
-		    <th>Description</th>
+			<th>Company</th>
+		    <th>Moving Box Kit</th>
+		    <th>Picture</th>
+		    <th width="30%">Description</th>
 		    <th>Price</th>
 		    <th></th>
 		</tr>
 		<% @search.move_size.used_card_board_box_products.each do |product| %>
 			<tr>
+				<td><%= image_tag "used-cardboard-boxes-logo.png", :title => "used cardboard boxes", :height =>100 %></td>
 				<td><%= product.name %></td>
 				<td><%= link_to(image_tag(product.thumbnail_url), product.link) %></td>
 				<td><%= product.description %></td>
-				<td><%= number_to_currency(product.price) %></td>
+				<td class="money"><%= number_to_currency(product.price) %></td>
 				<td>
 					<% if user_signed_in? %>
+						<%= link_to(image_tag("free_coffee.png", :title => "free coffee", :height => 100),  "#{product.link}&AFFTRACK=#{current_user.id}", :target => "_blank", :class => "image_link") %><br/>
 						<%= link_to "buy now to get your FREE Starbucks e-Giftcard", "#{product.link}&AFFTRACK=#{current_user.id}", :target => "_blank" %>
 					<% else %>
 						<%= link_to "buy now", product.link, :target => "_blank" %>
 					<% end %>
 				</td>
 				<% if !user_signed_in? %>
-				<td><%= link_to "FREE coffee!!  Get a $5 Starbucks e-Giftcard if you sign in, then buy!", new_user_registration_path %></td>
+				<td>
+					<%= link_to(image_tag("free_coffee.png", :title => "free coffee", :height => 100), new_user_registration_path, :class => "image_link") %><br/>
+				<%= link_to "FREE coffee!!  Get a $5 Starbucks e-Giftcard if you sign in, then buy!", new_user_registration_path %>
+				</td>
 				<% end %>
 			</tr>
 		<% end %>

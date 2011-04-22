@@ -51,7 +51,7 @@ class SearchesController < ApplicationController
 
     respond_to do |format|
       if @search.save
-        format.html { redirect_to(@search, :notice => 'Search was successfully created.') }
+        format.html { redirect_to(@search, :notice => 'Please see your recommended moving box kits below.') }
         format.xml  { render :xml => @search, :status => :created, :location => @search }
       else
         format.html { render :action => "new" }

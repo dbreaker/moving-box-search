@@ -78,10 +78,10 @@ class UsedCardBoardBoxProduct < ActiveRecord::Base
   end
 
   def self.check_for_purchases
-    start_date = 2.days.ago.strftime("%m/%d/%Y")
+    start_date = 20.days.ago.strftime("%m/%d/%Y")
     end_date = 0.days.ago.strftime("%m/%d/%Y")
     url = "http://shareasale-homefinder.apigee.com?"
-    url = "https://shareasale.com/x.cfm?"
+#    url = "https://shareasale.com/x.cfm?"
     url += "action=activity&affiliateId=398075&token=zTTUzIxaWkMdfNzJ"
     url += "&dateStart=#{start_date}&dateEnd=#{end_date}"
     url += "&merchantId=22817&sortCol=commission&sortDir=desc&version=1.3"

@@ -1,5 +1,9 @@
 Movingboxsearch::Application.routes.draw do
 
+  get "content/about_us"
+
+  get "content/contact_us"
+
   resources :purchases
 
   match 'admin' => 'admin#index'

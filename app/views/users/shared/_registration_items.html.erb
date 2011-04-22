@@ -8,10 +8,11 @@
 	  </li>
 	<% end %>
 <% else %>
-  <li>
-  <%= link_to('Register', new_user_registration_path)  %>
-  </li>
-  <li>
+	<li>
+	<%= image_tag "fb_logo.png", :title => "sing in with facebook", :height => 20, :class => "fb_logo_login" %>
 	<%= link_to "Sign in with Facebook", user_omniauth_authorize_path(:facebook) %>
-  </li>
+	</li>
+	 <li>
+	 <%= link_to('Register', new_user_registration_path)  %>
+	 </li>
 <% end %>
