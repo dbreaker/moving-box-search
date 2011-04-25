@@ -11,32 +11,6 @@ class UsedCardBoardBoxProduct < ActiveRecord::Base
 
   validates_uniqueness_of :product_id
   
-  def self.find_bad_length
-    infile = "22817.txt"
-        trends = File.open(infile)
-        started_reading_data = false
-        keep_reading_data = true
-        count = 0
-    #    trends.each_line do |line|
-    #      count += 1
-    #      puts line
-    #      puts "read line #{count}"
-    #      line_array = line.split("|")
-    #    end
-      CSV.foreach(infile, { :col_sep => "|"}) do |row|
-        puts "row 0 too long" if row[0].length > 250
-        puts ":name" if row[1].length > 250
-        puts ":company_name" if row[3].length > 250
-        puts ":link" if row[4].length > 200
-        puts ":image_url" if row[6].length > 200
-        puts ":price" if row[7].length > 200
-        puts ":description" if row[11].length > 200
-        puts ":merchant_id" if row[2].length > 200
-        puts ":thumbnail_url" if row[5].length > 200
-        puts ":instock_status" if row[18].length > 200
-      end
-  end
-  
   def self.import_data_file
     #put in ftp stuff to get file
     infile = "ucbb_products.csv"
@@ -88,42 +62,63 @@ class UsedCardBoardBoxProduct < ActiveRecord::Base
     puts url
     result = ""
     new_array = []
-    begin
+    begin #taking this out for now so i get notified if shit breaks
       open(url) do |f|
         result = f.read
       end
+        #get a clean array of results
         results_array = result.split(/\n/)
-        results_array[1..(results_array.size - 1)].each do |line|
-          row = line.split("|")
-          if row[0] && !row[0].blank?
-            new_array << row 
-            puts "Trans ID: #{row[0]}"
-            puts "User ID: #{row[1]}"
-            puts "Merchant ID: #{row[2]}"
-            puts "Trans Date: #{row[3]}" #when they bought
-            puts "Trans Amount: #{row[4]}" #how much they paid
-            puts "Commission: #{row[5]}"
-            puts "Comment: #{row[6]}"
-            puts "Voided: #{row[7]}"
-            puts "Pending Date: #{row[8]}"
-            puts "Locked: #{row[9]}"
-            puts "Aff Comment: #{row[10]}"  #our user id will be here
-            puts "Banner Page: #{row[11]}"
-            puts "Reversal Date: #{row[12]}"
-            puts "Click Date|: #{row[13]}" #when they clicked
-            puts "Click Time: #{row[14]}"
-            puts "Banner Id: #{row[15]}"
-            puts "SKU List: #{row[16]}"
-            puts "Quantity List: #{row[17]}"
-            puts "Lock Date: #{row[18]}"
-            puts "Paid Date: #{row[19]}"
+        if results_array.size > 0
+          results_array[1..(results_array.size - 1)].each do |line|
+            row = line.split("|")
+            if row[0] && !row[0].blank?
+              new_array << row 
+              puts "Trans ID: #{row[0]}"
+              puts "User ID: #{row[1]}"
+              puts "Merchant ID: #{row[2]}"
+              puts "Trans Date: #{row[3]}" #when they bought
+              puts "Trans Amount: #{row[4]}" #how much they paid
+              puts "Commission: #{row[5]}"
+              puts "Comment: #{row[6]}"
+              puts "Voided: #{row[7]}"
+              puts "Pending Date: #{row[8]}"
+              puts "Locked: #{row[9]}"
+              puts "Aff Comment: #{row[10]}"  #our user id will be here
+              puts "Banner Page: #{row[11]}"
+              puts "Reversal Date: #{row[12]}"
+              puts "Click Date|: #{row[13]}" #when they clicked
+              puts "Click Time: #{row[14]}"
+              puts "Banner Id: #{row[15]}"
+              puts "SKU List: #{row[16]}"
+              puts "Quantity List: #{row[17]}"
+              puts "Lock Date: #{row[18]}"
+              puts "Paid Date: #{row[19]}"
+            end
           end
         end
-#        puts y result
-        puts y new_array
-    rescue Exception => e
-      new_array = e
-    end
+        #now that we have a clean array, roll through, and enter new purchases
+        new_array.each do |trans|
+          puts y trans
+          purchase = Purchase.find_by_aff_transaction_id(trans[0])
+          user = User.find(trans[10].to_i)
+          if !purchase && user
+            puts "INFO: found user id: #{user.id} #{user.email}, creating purchase"
+            p = Purchase.new(:aff_transaction_id => trans[0],
+              :aff_merchant_id => trans[2],
+              :transaction_date => Time.parse(trans[3]),
+              :transaction_amount => trans[4].to_f,
+              :commission => trans[5].to_f,
+              :click_datetime => Time.parse("#{trans[13][0,10]} #{trans[14]}")
+              )
+            p.user = user
+            p.save!
+          else
+            puts "INFO: user not found for id: #{trans[10]}"
+          end
+        end
+#    rescue Exception => e
+#      new_array = e
+#    end
     new_array
   end
   

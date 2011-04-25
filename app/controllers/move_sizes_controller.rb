@@ -1,4 +1,10 @@
 class MoveSizesController < ApplicationController
+
+  before_filter :authenticate_user!
+  before_filter :authenticate_admin, :except => [:login_as_admin]
+  
+  layout "admin"
+
   # GET /move_sizes
   # GET /move_sizes.xml
   def index

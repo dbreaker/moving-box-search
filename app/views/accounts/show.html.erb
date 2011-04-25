@@ -21,22 +21,26 @@
 
 <h2>Your Purchases</h2>
 <% if current_user.purchases.size > 0 %>
-	<table>
+	<table class="user_purchases">
 	  <tr>
-	    <th>Transaction date</th>
-	    <th>Transaction amount</th>
-	    <th>Click datetime</th>
-	    <th>Starbucks amount purchased</th>
-	    <th>Starbucks sent to email</th>
-	    <th>Starbucks confirmation number</th>
+	    <th colspan="2"></th>
+	    <th colspan="4">Your Starbucks e-Giftcard</th>
+	  </tr>
+	  <tr>
+	    <th>Purchase date</th>
+	    <th>Purchase amount</th>
+	    <th>eGiftcard Amount</th>
+	    <th>Sent to Email</th>
+	    <th>Sent At</th>
+	    <th>Confirmation Number</th>
 	  </tr>
 
 	<% current_user.purchases.each do |purchase| %>
-	  <tr>
-	    <td><%= purchase.transaction_date %></td>
-	    <td><%= purchase.transaction_amount %></td>
-	    <td><%= purchase.click_datetime %></td>
+	  <tr class="<%= cycle("even", "odd") %>">
+	    <td><%= purchase.transaction_date.strftime("%m/%d/%Y at %I:%M%p") %></td>
+	    <td class="money"><%= number_to_currency(purchase.transaction_amount) %></td>
 	    <td><%= purchase.starbucks_amount_purchased %></td>
+	    <td><%= purchase.starbucks_sent_at %></td>
 	    <td><%= purchase.starbucks_sent_to_email %></td>
 	    <td><%= purchase.starbucks_confirmation_number %></td>
 	  </tr>

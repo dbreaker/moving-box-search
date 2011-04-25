@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110420220419) do
+ActiveRecord::Schema.define(:version => 20110425213626) do
 
   create_table "box_choices", :force => true do |t|
     t.integer  "move_size_id"
@@ -39,7 +39,11 @@ ActiveRecord::Schema.define(:version => 20110420220419) do
     t.string   "starbucks_confirmation_number"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.decimal  "commission",                    :precision => 8, :scale => 2
+    t.datetime "starbucks_sent_at"
   end
+
+  add_index "purchases", ["aff_transaction_id"], :name => "index_purchases_on_aff_transaction_id"
 
   create_table "searches", :force => true do |t|
     t.date     "move_date"
