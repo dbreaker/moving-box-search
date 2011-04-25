@@ -15,9 +15,8 @@
 	<table class="search_results">
 		<tr>
 			<th>Company</th>
-		    <th>Moving Box Kit</th>
+		    <th width="200px">Moving Box Kit</th>
 		    <th>Picture</th>
-		    <th width="200px">Description</th>
 		    <th>Price</th>
 		</tr>
 		<% @search.move_size.used_card_board_box_products.each do |product| %>
@@ -26,11 +25,12 @@
 					<p><b>Save trees and get great boxes!</b></p>
 					<p>UsedCardBoardBoxes.com rescues quality used boxes from large companies that might otherwise recycle them or simply throw them away. They guarantee them to work just as well as new boxes.</p>
 				</td>
-				<td class="product_name"><%= product.name %></td>
-				<td>
-					<%= link_to(image_tag(product.thumbnail_url), product.link) %>
+				<td><span class="product_name"><%= product.name %></span><br/>
+					<%= raw(product.description) %>
 				</td>
-				<td><%= raw(product.description) %></td>
+				<td>
+					<%= link_to(image_tag(product.thumbnail_url), product.link, :class => "image_link") %>
+				</td>
 				<td class="money"><%= number_to_currency(product.price) %></td>
 				<% if !user_signed_in? %>
 				<td>

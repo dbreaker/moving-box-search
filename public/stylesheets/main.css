@@ -219,7 +219,7 @@ table.search_results td.explanation {
 	font-style:italic;
 	border: 0px;
 }
-table.search_results td.product_name {
+table.search_results .product_name {
 	font-size:14px;
 	font-weight:bold;
 }
@@ -231,3 +231,4 @@ table.search_results td.money {
 table.search_results td.company {
 	font-size:11px;
 }
+
