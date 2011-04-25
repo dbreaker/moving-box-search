@@ -1,4 +1,3 @@
-<h1>MovingBoxSearch.com Admin</h1>
 
 <% @users.each do |user| %>
 	<p><%= user.email %> - <%= link_to "login as", :action => "login_as", :id => user.id %></p>
