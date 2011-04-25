@@ -8,7 +8,7 @@ class UsedCardBoardBoxProductsController < ApplicationController
   # GET /used_card_board_box_products
   # GET /used_card_board_box_products.xml
   def index
-    @used_card_board_box_products = UsedCardBoardBoxProduct.all
+    @used_card_board_box_products = UsedCardBoardBoxProduct.all.order("price ASC")
 
     respond_to do |format|
       format.html # index.html.erb
