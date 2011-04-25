@@ -18,7 +18,7 @@
     <td><%= used_card_board_box_product.name %></td>
     <td><%= link_to(image_tag(used_card_board_box_product.thumbnail_url), used_card_board_box_product.link) %></td>
     <td><%= number_to_currency(used_card_board_box_product.price) %></td>
-    <td><%=  %></td>
+    <td><%= raw(used_card_board_box_product.description) %></td>
     <td><%= link_to 'Show', used_card_board_box_product %></td>
     <td><%= link_to 'Edit', edit_used_card_board_box_product_path(used_card_board_box_product) %></td>
     <td><%= link_to 'Destroy', used_card_board_box_product, :confirm => 'Are you sure?', :method => :delete %></td>

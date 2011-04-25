@@ -1,6 +1,9 @@
 class UsedCardBoardBoxProductsController < ApplicationController
 
-  before_filter :authenticate_admin!
+  before_filter :authenticate_user!
+  before_filter :authenticate_admin, :except => [:login_as_admin]
+  
+  layout "admin"
 
   # GET /used_card_board_box_products
   # GET /used_card_board_box_products.xml

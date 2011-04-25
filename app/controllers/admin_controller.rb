@@ -28,11 +28,4 @@ class AdminController < ApplicationController
       redirect_to :controller => 'accounts', :action => 'show', :id => user.id
   end
 
-  private
-  def authenticate_admin
-    if !current_user.admin?
-      render :text => "Oops, you need to be an admin to view this page."
-    end
-  end
-
 end

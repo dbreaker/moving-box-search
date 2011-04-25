@@ -17,31 +17,35 @@
 			<th>Company</th>
 		    <th>Moving Box Kit</th>
 		    <th>Picture</th>
-		    <th width="30%">Description</th>
+		    <th width="200px">Description</th>
 		    <th>Price</th>
-		    <th></th>
 		</tr>
 		<% @search.move_size.used_card_board_box_products.each do |product| %>
-			<tr>
-				<td><%= image_tag "used-cardboard-boxes-logo.png", :title => "used cardboard boxes", :height =>100 %></td>
-				<td><%= product.name %></td>
-				<td><%= link_to(image_tag(product.thumbnail_url), product.link) %></td>
-				<td><%= product.description %></td>
-				<td class="money"><%= number_to_currency(product.price) %></td>
-				<td>
-					<% if user_signed_in? %>
-						<%= link_to(image_tag("free_coffee.png", :title => "free coffee", :height => 100),  "#{product.link}&AFFTRACK=#{current_user.id}", :target => "_blank", :class => "image_link") %><br/>
-						<%= link_to "buy now to get your FREE Starbucks e-Giftcard", "#{product.link}&AFFTRACK=#{current_user.id}", :target => "_blank" %>
-					<% else %>
-						<%= link_to "buy now", product.link, :target => "_blank" %>
-					<% end %>
+			<tr class="<%= cycle("even", "odd") %>">
+				<td class="company"><%= image_tag "used-cardboard-boxes-logo.png", :title => "used cardboard boxes", :height => 75 %>
+					<p><b>Save trees and get great boxes!</b></p>
+					<p>UsedCardBoardBoxes.com rescues quality used boxes from large companies that might otherwise recycle them or simply throw them away. They guarantee them to work just as well as new boxes.</p>
 				</td>
+				<td class="product_name"><%= product.name %></td>
+				<td>
+					<%= link_to(image_tag(product.thumbnail_url), product.link) %>
+				</td>
+				<td><%= raw(product.description) %></td>
+				<td class="money"><%= number_to_currency(product.price) %></td>
 				<% if !user_signed_in? %>
 				<td>
 					<%= link_to(image_tag("free_coffee.png", :title => "free coffee", :height => 100), new_user_registration_path, :class => "image_link") %><br/>
 				<%= link_to "FREE coffee!!  Get a $5 Starbucks e-Giftcard if you sign in, then buy!", new_user_registration_path %>
 				</td>
 				<% end %>
+				<td>
+					<% if user_signed_in? %>
+						<%= link_to(image_tag("free_coffee.png", :title => "free coffee", :height => 100),  "#{product.link}&AFFTRACK=#{current_user.id}", :target => "_blank", :class => "image_link") %><br/>
+						<%= link_to "buy now to get your FREE Starbucks e-Giftcard", "#{product.link}&AFFTRACK=#{current_user.id}", :target => "_blank" %>
+					<% else %>
+						or, <%= link_to "buy now", product.link, :target => "_blank" %> without signing in
+					<% end %>
+				</td>
 			</tr>
 		<% end %>
 	</table>
