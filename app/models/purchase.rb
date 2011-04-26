@@ -12,12 +12,13 @@ class Purchase < ActiveRecord::Base
     page = agent.get('https://www.starbucks.com/shop/card/egift')
     to = "Awesome Person"
     msg = "Thank you so much for buying your Moving Boxes through MovingBoxSearch.com.  Please enjoy this free coffee on us, we hope it makes your move day better."
+    amount_purchased = 5
     
     #go to the ecom page, fill out our iinfo
     next_page = page.form_with(:action => '/shop/card/egift/DRFNDZYU') do |form|
       form.recipient_name = to
       form.message = msg
-      form.amount = 5
+      form.amount = amount_purchased
       form.sender_name = "MovingBoxSearch.com"
       form.sender_email = "support@MovingBoxSearch.com"
       form.recipient_email = self.user.email
@@ -34,9 +35,27 @@ class Purchase < ActiveRecord::Base
     purchase_page = agent.submit(login_form, login_form.buttons.first)
 
     #buy some coffee, and record the details on the purchase record
-    purchase_page
-		
+    purchase_page.forms.first.radiobuttons[1].check
+    cc_page =  agent.submit(purchase_page.forms.first, purchase_page.forms.first.buttons.last)
+    
+    cvn = "381"
+    cc_form = cc_page.form_with(:action => "/shop/paymentmethod")
+		cc_form.fields_with(:name => "PaymentMethod.CVN").first.value = cvn
+    confirm_page =  agent.submit(cc_form, cc_form.buttons.last)
 
+    #purchase a giftcard
+		purchase_link = confirm_page.link_with(:text => "Purchase")
+    confirmation_page = agent.click(purchase_link)
+    doc = Nokogiri::HTML(confirmation_page.body)
+    confirmation_number = doc.css('dl.order_info').last.css('dd.inline').last.inner_html.gsub(/\r|\n|\t|<br>/,"")
+    #set starbucks fields confirmation_number
+    self.starbucks_amount_purchased = amount_purchased
+    self.starbucks_sent_to_email = self.user.email
+    self.starbucks_confirmation_number = confirmation_number
+    self.starbucks_sent_at = Time.now()
+    self.save!
+    self
+    #send email to user that we bought them coffee!
   end
   
 end
