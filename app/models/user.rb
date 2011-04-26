@@ -1,6 +1,7 @@
 class User < ActiveRecord::Base
 
   has_many :searches, :dependent => :destroy
+  has_many :clicks, :dependent => :destroy
   has_many :purchases
 
   # Include default devise modules. Others available are:

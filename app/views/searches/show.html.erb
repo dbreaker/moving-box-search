@@ -29,7 +29,7 @@
 					<%= raw(product.description) %>
 				</td>
 				<td>
-					<%= link_to(image_tag(product.thumbnail_url), product.link, :class => "image_link") %>
+					<%= link_to(image_tag(product.thumbnail_url), {:controller => "searches", :action => "track_click", :search_id => @search.id,  :link => product.link, :class => "image_link"}, :target => "_blank") %>
 				</td>
 				<td class="money"><%= number_to_currency(product.price) %></td>
 				<% if !user_signed_in? %>
@@ -40,10 +40,10 @@
 				<% end %>
 				<td>
 					<% if user_signed_in? %>
-						<%= link_to(image_tag("free_coffee.png", :title => "free coffee", :height => 100),  "#{product.link}&AFFTRACK=#{current_user.id}", :target => "_blank", :class => "image_link") %><br/>
-						<%= link_to "buy now to get your FREE Starbucks e-Giftcard", "#{product.link}&AFFTRACK=#{current_user.id}", :target => "_blank" %>
+						<%= link_to(image_tag("free_coffee.png", :title => "free coffee", :height => 100),  {:controller => "searches", :action => "track_click", :user_id => current_user.id, :search_id => @search.id,  :link => "#{product.link}&AFFTRACK=#{current_user.id}"}, :target => "_blank", :class => "image_link") %><br/>
+						<%= link_to "buy now to get your FREE Starbucks e-Giftcard", {:controller => "searches", :action => "track_click", :user_id => current_user.id, :search_id => @search.id,  :link => "#{product.link}&AFFTRACK=#{current_user.id}"}, :target => "_blank" %>
 					<% else %>
-						or, <%= link_to "buy now", product.link, :target => "_blank" %> without signing in
+						or, <%= link_to "buy now", {:controller => "searches", :action => "track_click", :search_id => @search.id,  :link => product.link}, :target => "_blank" %> without signing in
 					<% end %>
 				</td>
 			</tr>

@@ -87,4 +87,15 @@ class SearchesController < ApplicationController
       format.xml  { head :ok }
     end
   end
+  
+  def track_click
+    #create click and send person on their way
+    user_id = params[:user_id]
+    search_id = params[:search_id]
+    link = params[:link]
+    c = Click.new(:user_id => user_id, :search_id => search_id, :link => link)
+    c.save!
+    redirect_to link
+  end
+  
 end

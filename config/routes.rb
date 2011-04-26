@@ -24,6 +24,8 @@ Movingboxsearch::Application.routes.draw do
 
   resources :used_card_board_box_products
 
+  #match "searches/track_click/:user_id/:search_id/:link" => "searches#track_click"
+  get "searches/track_click"
   resources :searches
 
 

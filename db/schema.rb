@@ -10,13 +10,21 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110426033102) do
+ActiveRecord::Schema.define(:version => 20110426132027) do
 
   create_table "box_choices", :force => true do |t|
     t.integer   "move_size_id"
     t.integer   "used_card_board_box_product_id"
     t.timestamp "created_at"
     t.timestamp "updated_at"
+  end
+
+  create_table "clicks", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "search_id"
+    t.text     "link"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "move_sizes", :force => true do |t|

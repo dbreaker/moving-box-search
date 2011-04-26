@@ -7,6 +7,7 @@ class Search < ActiveRecord::Base
 
   belongs_to :move_size
   belongs_to :user
+  has_many :clicks
   
   def self.find_boxes(keyword = nil)
     kw = "+#{keyword.gsub(' ','+')}" if keyword
