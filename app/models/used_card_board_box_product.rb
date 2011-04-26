@@ -62,7 +62,7 @@ class UsedCardBoardBoxProduct < ActiveRecord::Base
     puts url
     result = ""
     new_array = []
-    begin #taking this out for now so i get notified if shit breaks
+#    begin #taking this out for now so i get notified if shit breaks
       open(url) do |f|
         result = f.read
       end
