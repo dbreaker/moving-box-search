@@ -8,17 +8,33 @@ class Purchase < ActiveRecord::Base
     # Create a new mechanize object
     agent = Mechanize.new { |a| a.log = Logger.new(STDERR) }
 
-    # Load the rubyforge website
+#    page = agent.get("https://www.starbucks.com/account/signin")
     page = agent.get('https://www.starbucks.com/shop/card/egift')
+    to = "Awesome Person"
+    msg = "Thank you so much for buying your Moving Boxes through MovingBoxSearch.com.  Please enjoy this free coffee on us, we hope it makes your move day better."
 #    page = agent.click page.link_with(:text => /Log In/) # Click the login link
-#    form = page.forms[1] # Select the first form
-#    form.form_loginname = ARGV[0]
-#    form.form_pw        = ARGV[1]
+    next_page = page.form_with(:action => '/shop/card/egift/DRFNDZYU') do |form|
+      form.recipient_name = to
+      form.message = msg
+      form.amount = 5
+      form.sender_name = "MovingBoxSearch.com"
+      form.sender_email = "support@MovingBoxSearch.com"
+      form.recipient_email = self.user.email
+    end.submit
+    
+#    puts next_page.body # Print out the body
+    
+    checkout_form = next_page.form_with(:action => '/shop/UpdateeGiftCart')
+    login_page = agent.submit(checkout_form, checkout_form.buttons[1])
+#    puts login_page.body # Print out the body
 
-    # Submit the form
-#    page = agent.submit(form, form.buttons.first)
+    login_form = login_page.form_with(:action => "/account/signin?returnurl=%2Fshop%2Fcheckout&allowguest=true")
+    login_form.fields_with(:name => "Account.UserName").first.value = "nanceskitchen"
+    login_form.fields_with(:name => "Account.PassWord").first.value = "Tcmi08mnidb"
+    purchase_page = agent.submit(login_form, login_form.buttons.first)
 
-    puts page.body # Print out the body
+    purchase_page
+		
 
   end
   
