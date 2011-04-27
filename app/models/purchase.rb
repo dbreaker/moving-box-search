@@ -56,6 +56,11 @@ class Purchase < ActiveRecord::Base
     self.save!
     self
     #send email to user that we bought them coffee!
+    self.send_coffee_email
+  end
+  
+  def send_coffee_email
+    Account.bought_coffee(self).deliver
   end
   
 end

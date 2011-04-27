@@ -112,6 +112,7 @@ class UsedCardBoardBoxProduct < ActiveRecord::Base
               )
             p.user = user
             p.save!
+            p.buy_coffee
           else
             puts "INFO: user not found for id: #{trans[10]}"
           end

@@ -37,11 +37,11 @@
 
 	<% current_user.purchases.each do |purchase| %>
 	  <tr class="<%= cycle("even", "odd") %>">
-	    <td><%= purchase.transaction_date.strftime("%m/%d/%Y at %I:%M%p") %></td>
+	    <td><%= purchase.transaction_date.strftime("%m/%d/%Y at %I:%M %p") %></td>
 	    <td class="money"><%= number_to_currency(purchase.transaction_amount) %></td>
 	    <td class="money"><%= number_to_currency(purchase.starbucks_amount_purchased) %></td>
 	    <td><%= purchase.starbucks_sent_to_email %></td>
-	    <td><%= purchase.starbucks_sent_at.strftime("%m/%d/%Y at %I:%M%p") %></td>
+	    <td><%= purchase.starbucks_sent_at.strftime("%m/%d/%Y at %I:%M %p") %></td>
 	    <td><%= purchase.starbucks_confirmation_number %></td>
 	  </tr>
 	<% end %>
