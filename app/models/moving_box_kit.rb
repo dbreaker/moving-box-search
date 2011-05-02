@@ -78,6 +78,17 @@ class MovingBoxKit < ActiveRecord::Base
     end
   end
   
+  def self.add_in_free_shipping
+    cs << Company.find(3)
+    cs << Company.find(2)
+    cs.each do |c|
+      c.moving_box_kits.each do |kit|
+        kit.description = kit.description.gsub("</ul>", "<li><b>Free Shipping</b></li></ul>")
+        kit.save!
+      end
+    end
+  end
+  
   def make_description_pretty(company_id = nil)
     line_items = self.description.split(",")
     line_items.each do |li|
