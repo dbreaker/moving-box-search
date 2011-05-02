@@ -1,0 +1,45 @@
+<%= form_for(@moving_box_kit) do |f| %>
+  <% if @moving_box_kit.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@moving_box_kit.errors.count, "error") %> prohibited this moving_box_kit from being saved:</h2>
+
+      <ul>
+      <% @moving_box_kit.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :product_id, "Product Id" %><br />
+    <%= f.text_field :product_id %>
+  </div>
+  <div class="field">
+    <%= f.label :link %><br />
+    <%= f.text_field :link, :size => 150 %>
+  </div>
+  <div class="field">
+    <%= f.label :image_url %><br />
+    <%= f.text_field :image_url, :size => 150 %>
+  </div>
+  <div class="field">
+    <%= f.label :price %><br />
+    <%= f.text_field :price %>
+  </div>
+  <div class="field">
+    <%= f.label :description %><br />
+    <%= f.text_area :description %>
+  </div>
+  <div class="field">
+    <%= f.label :merchant_id %><br />
+    <%= f.text_field :merchant_id %>
+  </div>
+  <div class="field">
+    <%= f.label :thumbnail_url %><br />
+    <%= f.text_area :thumbnail_url, :rows => 1 %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

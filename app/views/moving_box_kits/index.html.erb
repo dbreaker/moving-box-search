@@ -1,0 +1,41 @@
+<h1>Listing Moving Box Kits for <%= (@company.name if @company) || "All Companies" %></h1>
+<b>See by company</b>
+<ul>
+	<% @companies.each do |company| %>
+	<li><%= link_to company.name,  :action => 'index', :company_id => company.id %></li>
+	<% end %>
+</ul>
+
+<table>
+  <tr>
+    <th>Product</th>
+    <th>Name</th>
+    <th>Company name</th>
+    <th>Image</th>
+    <th>Price</th>
+    <th>Description</th>
+    <th>Merchant Id</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @moving_box_kits.each do |moving_box_kit| %>
+  <tr class="<%= cycle("even", "odd") %>">
+    <td><%= moving_box_kit.product_id %></td>
+    <td><%= moving_box_kit.name %></td>
+    <td><%= moving_box_kit.company.name %></td>
+    <td><%= link_to(image_tag(moving_box_kit.image_url), moving_box_kit.link, :target => "_blank") %></td>
+    <td><%= number_to_currency(moving_box_kit.price) %></td>
+    <td><%= raw(moving_box_kit.description) %></td>
+    <td><%= moving_box_kit.merchant_id %></td>
+    <td><%= link_to 'Show', moving_box_kit %></td>
+    <td><%= link_to 'Edit', edit_moving_box_kit_path(moving_box_kit) %></td>
+    <td><%= link_to 'Destroy', moving_box_kit, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Moving box kit', new_moving_box_kit_path %>

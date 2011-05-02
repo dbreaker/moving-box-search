@@ -10,7 +10,7 @@
 <%= link_to 'Modify Search', edit_search_path(@search) %> |
 <%= link_to 'Start Over', "/" %>
 
-<% if @search.move_size.used_card_board_box_products %>
+<% if @search.move_size.moving_box_kits %>
 	<h2>Recommended Moving Kits</h2>
 	<table class="search_results">
 		<tr>
@@ -19,17 +19,17 @@
 		    <th>Picture</th>
 		    <th>Price</th>
 		</tr>
-		<% @search.move_size.used_card_board_box_products.each do |product| %>
+		<% @search.move_size.moving_box_kits.each do |product| %>
 			<tr class="<%= cycle("even", "odd") %>">
-				<td class="company"><%= image_tag "used-cardboard-boxes-logo.png", :title => "used cardboard boxes", :height => 75 %>
-					<p><b>Save trees and get great boxes!</b></p>
-					<p>UsedCardBoardBoxes.com rescues quality used boxes from large companies that might otherwise recycle them or simply throw them away. They guarantee them to work just as well as new boxes.</p>
+				<td class="company">
+					<%= image_tag product.company.logo_file, :title => product.company.name %><br/>
+					<p><%= product.company.about %></p>
 				</td>
 				<td><span class="product_name"><%= product.name %></span><br/>
 					<%= raw(product.description) %>
 				</td>
 				<td>
-					<%= link_to(image_tag(product.thumbnail_url), {:controller => "searches", :action => "track_click", :search_id => @search.id,  :link => product.link, :class => "image_link"}, :target => "_blank") %>
+					<%= link_to(image_tag(product.image_url), {:controller => "searches", :action => "track_click", :search_id => @search.id,  :link => product.link, :class => "image_link"}, :target => "_blank") %>
 				</td>
 				<td class="money"><%= number_to_currency(product.price) %></td>
 				<% if !user_signed_in? %>

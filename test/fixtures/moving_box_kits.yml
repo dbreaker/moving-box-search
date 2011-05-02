@@ -1,0 +1,23 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  product_id: MyString
+  string: 
+  company_name: MyString
+  link: MyString
+  image_url: MyString
+  price: 9.99
+  description: MyText
+  merchant_id: MyString
+  thumbnail_url: MyText
+
+two:
+  product_id: MyString
+  string: 
+  company_name: MyString
+  link: MyString
+  image_url: MyString
+  price: 9.99
+  description: MyText
+  merchant_id: MyString
+  thumbnail_url: MyText

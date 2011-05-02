@@ -41,7 +41,11 @@ class MoveSizesController < ApplicationController
   # GET /move_sizes/1/edit
   def edit
     @move_size = MoveSize.find(params[:id])
-    @used_card_board_box_products = UsedCardBoardBoxProduct.find(:all, :order => 'price')
+    @moving_box_kits = MovingBoxKit.order('company_id, price DESC')
+    @selected_move_box_kit_ids = []
+    @move_size.moving_box_kits.each do |kit|
+      @selected_move_box_kit_ids << kit.id
+    end
   end
 
   # POST /move_sizes
@@ -66,16 +70,15 @@ class MoveSizesController < ApplicationController
   def update
     @move_size = MoveSize.find(params[:id])
 
-    used_card_board_box_products = params[:used_bard_board_box_product]
-    used_card_board_box_product_ids = []
-    used_card_board_box_products.each {|k,v| used_card_board_box_product_ids << k.to_i} if used_card_board_box_products
-    puts y used_card_board_box_product_ids
+    moving_box_kits = params[:moving_box_kit]
+    moving_box_kit_ids = []
+    moving_box_kits.each {|k,v| moving_box_kit_ids << k.to_i} if moving_box_kits
 
     respond_to do |format|
       if @move_size.update_attributes(params[:move_size])
 
-        @move_size.used_card_board_box_products.delete_all
-        @move_size.used_card_board_box_products << UsedCardBoardBoxProduct.find(used_card_board_box_product_ids)
+        @move_size.moving_box_kits.delete_all
+        @move_size.moving_box_kits << MovingBoxKit.find(moving_box_kit_ids)
 
         format.html { redirect_to(@move_size, :notice => 'Move size was successfully updated.') }
         format.xml  { head :ok }

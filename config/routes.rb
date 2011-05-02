@@ -1,5 +1,9 @@
 Movingboxsearch::Application.routes.draw do
 
+  resources :companies
+
+  resources :moving_box_kits
+
   get "content/about_us"
 
   get "content/contact_us"

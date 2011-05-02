@@ -14,8 +14,8 @@
 <p>
   <b>These Moving Box Products Apply to this Move Size:</b>
 	<ul>
-	<% @move_size.used_card_board_box_products.each do |p|%>
-  		<li><%= p.name %></li>
+	<% @move_size.moving_box_kits.each do |u|%>
+  		<li><%= u.company.name %> - <%= link_to(u.name, u.link, :target => "_blank") %> <%= number_to_currency(u.price) %></li>
 	<% end %>
 	</ul>
 </p>

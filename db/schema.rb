@@ -10,13 +10,13 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110426132027) do
+ActiveRecord::Schema.define(:version => 20110429043732) do
 
   create_table "box_choices", :force => true do |t|
-    t.integer   "move_size_id"
-    t.integer   "used_card_board_box_product_id"
-    t.timestamp "created_at"
-    t.timestamp "updated_at"
+    t.integer  "move_size_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "moving_box_kit_id"
   end
 
   create_table "clicks", :force => true do |t|
@@ -27,11 +27,35 @@ ActiveRecord::Schema.define(:version => 20110426132027) do
     t.datetime "updated_at"
   end
 
+  create_table "companies", :force => true do |t|
+    t.string   "name"
+    t.string   "url"
+    t.integer  "merchant_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "logo_file"
+    t.text     "about"
+  end
+
   create_table "move_sizes", :force => true do |t|
     t.string    "home_size"
     t.integer   "pounds"
     t.timestamp "created_at"
     t.timestamp "updated_at"
+  end
+
+  create_table "moving_box_kits", :force => true do |t|
+    t.string   "product_id"
+    t.string   "name"
+    t.string   "link"
+    t.string   "image_url"
+    t.decimal  "price",         :precision => 8, :scale => 2
+    t.text     "description"
+    t.text     "thumbnail_url"
+    t.string   "merchant_id"
+    t.integer  "company_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "purchases", :force => true do |t|

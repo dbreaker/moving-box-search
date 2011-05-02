@@ -22,8 +22,8 @@
   <div class="field">
 	  <b>UsedCardboardBox Products:</b>
 		<ul>
-		<% @used_card_board_box_products.each do |u|%>
-		<li><%= check_box_tag("used_bard_board_box_product[#{u.id}]", 1) %>  <%= u.name %></li>
+		<% @moving_box_kits.each do |u|%>
+		<li><%= check_box_tag("moving_box_kit[#{u.id}]", 1, (true if @selected_move_box_kit_ids.include?(u.id))) %>  <%= u.company.name %> - <%= link_to(u.name, u.link, :target => "_blank") %> <%= number_to_currency(u.price) %></li>
 		<% end %>
 		</ul>
   </div>

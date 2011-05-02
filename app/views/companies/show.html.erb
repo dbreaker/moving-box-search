@@ -1,0 +1,25 @@
+<p id="notice"><%= notice %></p>
+
+<%= image_tag @company.logo_file %>
+<p>
+  <b>Name:</b>
+  <%= @company.name %>
+</p>
+
+<p>
+  <b>Url:</b>
+  <%= @company.url %>
+</p>
+
+<p>
+  <b>Merchant Id:</b>
+  <%= @company.merchant_id %>
+</p>
+<p>
+  <b>About:</b>
+  <%= raw(@company.about) %>
+</p>
+
+
+<%= link_to 'Edit', edit_company_path(@company) %> |
+<%= link_to 'Back', companies_path %>

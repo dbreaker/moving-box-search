@@ -1,0 +1,39 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Product:</b>
+  <%= @moving_box_kit.product_id %>
+</p>
+
+<p>
+  <b>Company:</b>
+  <%= @moving_box_kit.company.name %>
+</p>
+
+<p>
+  <b>Link:</b>
+  <%= link_to @moving_box_kit.link, @moving_box_kit.link, :target => "_blank" %>
+</p>
+
+<p>
+  <%= image_tag(@moving_box_kit.image_url) %>
+</p>
+
+<p>
+  <b>Price:</b>
+  <%= number_to_currency(@moving_box_kit.price) %>
+</p>
+
+<p>
+  <b>Description:</b>
+  <%= raw(@moving_box_kit.description) %>
+</p>
+
+<p>
+  <b>Merchant Id:</b>
+  <%= @moving_box_kit.merchant_id %>
+</p>
+
+
+<%= link_to 'Edit', edit_moving_box_kit_path(@moving_box_kit) %> |
+<%= link_to 'Back', moving_box_kits_path %>
