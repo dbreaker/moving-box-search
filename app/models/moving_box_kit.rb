@@ -84,7 +84,7 @@ class MovingBoxKit < ActiveRecord::Base
     cs << Company.find(2)
     cs.each do |c|
       c.moving_box_kits.each do |kit|
-        kit.description = kit.description.gsub("</ul>", "<li><b>Free Shipping</b></li></ul>")
+        kit.description = kit.description.gsub("<li><b>Free Shipping</b></li></ul>", "</ul><br/><b>Free Shipping!</b>")
         kit.save!
       end
     end
