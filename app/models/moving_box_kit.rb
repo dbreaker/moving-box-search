@@ -79,6 +79,7 @@ class MovingBoxKit < ActiveRecord::Base
   end
   
   def self.add_in_free_shipping
+    cs = []
     cs << Company.find(3)
     cs << Company.find(2)
     cs.each do |c|
