@@ -33,6 +33,7 @@ class SearchesController < ApplicationController
     @search = Search.new
     @search.move_date = Time.now + 7.days
     @search.user = current_user if current_user
+    @companies = Company.all
     respond_to do |format|
       format.html # new.html.erb
       format.xml  { render :xml => @search }

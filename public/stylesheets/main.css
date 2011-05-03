@@ -267,3 +267,23 @@ table.user_purchases tr.odd {
 table.user_purchases td.money {
 	text-align:right;
 }
+.company_homepage_logo {
+	max-height:100px;
+	padding-right: 30px;
+}
+
+input.submit { 
+	background: url("../images/button_bg.png") repeat-x top;
+	width:210px;
+	height:36px;
+	cursor:pointer;
+	color: white; 
+	font-weight: bold; 
+	padding: 7px 34px 8px; 
+	border: 0px !important; 
+	font-size: 16px;
+	font-weight:bold; 
+	margin-left: 0px; 
+	margin-top: 5px; 
+	margin-bottom: 20px; 
+	}

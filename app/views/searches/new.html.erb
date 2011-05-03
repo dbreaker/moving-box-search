@@ -2,6 +2,11 @@
 
 <%= render 'form' %>
 
+<h2>Compare Moving Box Prices from Multiple Providers:</h2>
+<% @companies.each do |company| %>
+	<%= image_tag company.logo_file, :title => company.name, :class => "company_homepage_logo" %>
+<% end %>
+<br/>
 <br/>
 <h2>MovingBoxSearch.com - We Make Moving Suck Less</h2>
 <div id="homepage_bottom">
