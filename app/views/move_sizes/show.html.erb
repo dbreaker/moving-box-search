@@ -12,6 +12,11 @@
 </p>
 
 <p>
+  <b>Slug:</b>
+  <%= @move_size.slug %>
+</p>
+
+<p>
   <b>These Moving Box Products Apply to this Move Size:</b>
 	<ul>
 	<% @move_size.moving_box_kits.each do |u|%>

@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Moving Box Search | Find Moving Boxes | MovingBoxSearch.com</title>
+  <title><%= @meta_title || "Moving Box Search | Find Moving Boxes | MovingBoxSearch.com" %></title>
+  <meta name="description" content="<%= @meta_description || "Moving Box Search - Compare prices from multiple providers.  Buy Moving Boxes online, get them in a few days.  Free Shipping.  MovingBoxSearch.com" %>" />
   <%= stylesheet_link_tag "main" %>
   <%= javascript_include_tag :defaults %>
   <%= csrf_meta_tag %>

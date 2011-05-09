@@ -20,6 +20,10 @@
     <%= f.text_field :pounds %>
   </div>
   <div class="field">
+    <%= f.label :slug %><br />
+    <%= f.text_field :slug %>
+  </div>
+  <div class="field">
 	  <b>UsedCardboardBox Products:</b>
 		<ul>
 		<% @moving_box_kits.each do |u|%>

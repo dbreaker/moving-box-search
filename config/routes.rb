@@ -1,5 +1,7 @@
 Movingboxsearch::Application.routes.draw do
 
+  match "kits/:slug" => "kits#index"
+
   resources :companies
 
   resources :moving_box_kits

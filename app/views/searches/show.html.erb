@@ -10,44 +10,4 @@
 <%= link_to 'Modify Search', edit_search_path(@search) %> |
 <%= link_to 'Start Over', "/" %>
 
-<% if @search.move_size.moving_box_kits %>
-	<h2>Recommended Moving Kits</h2>
-	<table class="search_results">
-		<tr>
-			<th>Company</th>
-		    <th width="200px">Moving Box Kit</th>
-		    <th>Picture</th>
-		    <th>Price</th>
-		</tr>
-		<% @search.move_size.moving_box_kits.each do |product| %>
-			<tr class="<%= cycle("even", "odd") %>">
-				<td class="company">
-					<%= image_tag product.company.logo_file, :title => product.company.name %><br/>
-					<p><%= product.company.about %></p>
-				</td>
-				<td><span class="product_name"><%= product.name %></span><br/>
-					<%= raw(product.description) %>
-				</td>
-				<td>
-					<%= link_to(image_tag(product.image_url), {:controller => "searches", :action => "track_click", :search_id => @search.id,  :link => product.link, :class => "image_link"}, :target => "_blank") %>
-				</td>
-				<td class="money"><%= number_to_currency(product.price) %></td>
-				<% if !user_signed_in? %>
-				<td>
-					<%= link_to(image_tag("free_coffee.png", :title => "free coffee", :height => 100), new_user_registration_path, :class => "image_link") %><br/>
-				<%= link_to "FREE coffee!!  Get a $5 Starbucks e-Giftcard if you sign in, then buy!", new_user_registration_path %>
-				</td>
-				<% end %>
-				<td>
-					<% if user_signed_in? %>
-						<%= link_to(image_tag("free_coffee.png", :title => "free coffee", :height => 100),  {:controller => "searches", :action => "track_click", :user_id => current_user.id, :search_id => @search.id,  :link => "#{product.link}&AFFTRACK=#{current_user.id}"}, :target => "_blank", :class => "image_link") %><br/>
-						<%= link_to "buy now to get your FREE Starbucks e-Giftcard", {:controller => "searches", :action => "track_click", :user_id => current_user.id, :search_id => @search.id,  :link => "#{product.link}&AFFTRACK=#{current_user.id}"}, :target => "_blank" %>
-					<% else %>
-						or, <%= link_to "buy now", {:controller => "searches", :action => "track_click", :search_id => @search.id,  :link => product.link}, :target => "_blank" %> without signing in
-					<% end %>
-				</td>
-			</tr>
-		<% end %>
-	</table>
-<% end %>
-
+<%= render :partial => "/shared/search_results", :locals => { :move_size => @search.move_size} %>

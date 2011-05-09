@@ -35,6 +35,10 @@ class Users::RegistrationsController < Devise::RegistrationsController
       puts "INFO: redirecting to search"
       search = Search.find(session[:search_id])
       search_path(search)
+    elsif session[:size_slug]
+      puts "INFO: redirecting to size results"
+      slug = session[:size_slug]
+      redirect_to :controller => "kits", :action => "index", :slug => slug  
     else
       puts "INFO: redirecting to account"
       url_for(:controller => '/accounts', :action => 'show', :id => resource.id)  #root_path

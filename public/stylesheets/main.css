@@ -214,22 +214,35 @@ table.search_results tr.even {
 table.search_results tr.odd {
 	background-color:#DDDDDD;
 }
+table.search_results td.company {
+	width:200px;
+}
+table.search_results td.company p{
+	font-size:12px;
+	padding:10px;
+}
+
+table.search_results td.description {
+	width:300px;
+	padding:10px;
+}
+
+table.search_results .product_name {
+	font-size:14px;
+	font-weight:bold;
+}
+table.search_results td.img {
+	max-height:200px;
+}
 table.search_results td.explanation {
 	font-size:12px;
 	font-style:italic;
 	border: 0px;
 }
-table.search_results .product_name {
-	font-size:14px;
-	font-weight:bold;
-}
 table.search_results td.money {
 	font-weight:bold;
 	font-size:14px;
 	text-align:right;
-}
-table.search_results td.company {
-	font-size:11px;
 }
 
 /*user purchases table*/
@@ -287,3 +300,14 @@ input.submit {
 	margin-top: 5px; 
 	margin-bottom: 20px; 
 	}
+#search_form {
+	float:left;
+	height: 200px;
+	width: 300px;
+}
+#quick_links {
+	font-size:11px;
+}
+.clearer {
+	clear: both;
+}

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110429043732) do
+ActiveRecord::Schema.define(:version => 20110505132315) do
 
   create_table "box_choices", :force => true do |t|
     t.integer  "move_size_id"
@@ -42,7 +42,10 @@ ActiveRecord::Schema.define(:version => 20110429043732) do
     t.integer   "pounds"
     t.timestamp "created_at"
     t.timestamp "updated_at"
+    t.string    "slug"
   end
+
+  add_index "move_sizes", ["slug"], :name => "index_move_sizes_on_slug"
 
   create_table "moving_box_kits", :force => true do |t|
     t.string   "product_id"
