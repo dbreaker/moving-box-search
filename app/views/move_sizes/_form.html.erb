@@ -24,7 +24,7 @@
     <%= f.text_field :slug %>
   </div>
   <div class="field">
-	  <b>UsedCardboardBox Products:</b>
+	  <b>Moving Box Kits:</b>
 		<ul>
 		<% @moving_box_kits.each do |u|%>
 		<li><%= check_box_tag("moving_box_kit[#{u.id}]", 1, (true if @selected_move_box_kit_ids.include?(u.id))) %>  <%= u.company.name %> - <%= link_to(u.name, u.link, :target => "_blank") %> <%= number_to_currency(u.price) %></li>

@@ -8,7 +8,7 @@ class MoveSizesController < ApplicationController
   # GET /move_sizes
   # GET /move_sizes.xml
   def index
-    @move_sizes = MoveSize.all
+    @move_sizes = MoveSize.order("pounds")
 
     respond_to do |format|
       format.html # index.html.erb
