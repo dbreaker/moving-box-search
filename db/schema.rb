@@ -13,28 +13,28 @@
 ActiveRecord::Schema.define(:version => 20110505132315) do
 
   create_table "box_choices", :force => true do |t|
-    t.integer  "move_size_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.integer  "moving_box_kit_id"
+    t.integer   "move_size_id"
+    t.timestamp "created_at"
+    t.timestamp "updated_at"
+    t.integer   "moving_box_kit_id"
   end
 
   create_table "clicks", :force => true do |t|
-    t.integer  "user_id"
-    t.integer  "search_id"
-    t.text     "link"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.integer   "user_id"
+    t.integer   "search_id"
+    t.text      "link"
+    t.timestamp "created_at"
+    t.timestamp "updated_at"
   end
 
   create_table "companies", :force => true do |t|
-    t.string   "name"
-    t.string   "url"
-    t.integer  "merchant_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.string   "logo_file"
-    t.text     "about"
+    t.string    "name"
+    t.string    "url"
+    t.integer   "merchant_id"
+    t.timestamp "created_at"
+    t.timestamp "updated_at"
+    t.string    "logo_file"
+    t.text      "about"
   end
 
   create_table "move_sizes", :force => true do |t|
@@ -48,17 +48,17 @@ ActiveRecord::Schema.define(:version => 20110505132315) do
   add_index "move_sizes", ["slug"], :name => "index_move_sizes_on_slug"
 
   create_table "moving_box_kits", :force => true do |t|
-    t.string   "product_id"
-    t.string   "name"
-    t.string   "link"
-    t.string   "image_url"
-    t.decimal  "price",         :precision => 8, :scale => 2
-    t.text     "description"
-    t.text     "thumbnail_url"
-    t.string   "merchant_id"
-    t.integer  "company_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.string    "product_id"
+    t.string    "name"
+    t.string    "link"
+    t.string    "image_url"
+    t.decimal   "price"
+    t.text      "description"
+    t.text      "thumbnail_url"
+    t.string    "merchant_id"
+    t.integer   "company_id"
+    t.timestamp "created_at"
+    t.timestamp "updated_at"
   end
 
   create_table "purchases", :force => true do |t|
@@ -91,10 +91,10 @@ ActiveRecord::Schema.define(:version => 20110505132315) do
   end
 
   create_table "sessions", :force => true do |t|
-    t.string   "session_id", :null => false
-    t.text     "data"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.string    "session_id", :null => false
+    t.text      "data"
+    t.timestamp "created_at"
+    t.timestamp "updated_at"
   end
 
   add_index "sessions", ["session_id"], :name => "index_sessions_on_session_id"

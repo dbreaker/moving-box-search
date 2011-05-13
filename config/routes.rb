@@ -1,5 +1,7 @@
 Movingboxsearch::Application.routes.draw do
 
+  get "sitemap/index"
+
   match "kits/:slug" => "kits#index"
 
   resources :companies
@@ -13,6 +15,9 @@ Movingboxsearch::Application.routes.draw do
   resources :purchases
 
   match 'admin' => 'admin#index'
+
+  # match ':controller(/:action(/:id(.:format)))'
+  match "sitemap(.:format)" => "sitemap#index"
 
   get "admin/view_users"
   get "admin/login_as"
