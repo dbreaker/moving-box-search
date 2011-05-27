@@ -1,4 +1,5 @@
 source 'http://rubygems.org'
+source 'http://gems.github.com'
 
 gem 'rails', '3.0.5'
 gem 'json'
@@ -6,6 +7,7 @@ gem 'devise'
 gem "oa-oauth", :require => "omniauth/oauth"
 gem 'mechanize' #, :git => 'https://github.com/tenderlove/mechanize.git'
 gem 'commission_junction'
+gem "exception_notification", :require => "exception_notifier"
 #gem 'remote google-adwords-api'
 
 # Bundle edge Rails instead:
