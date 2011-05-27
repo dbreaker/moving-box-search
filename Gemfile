@@ -6,6 +6,7 @@ gem 'devise'
 gem "oa-oauth", :require => "omniauth/oauth"
 gem 'mechanize' #, :git => 'https://github.com/tenderlove/mechanize.git'
 gem 'commission_junction'
+#gem 'remote google-adwords-api'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'

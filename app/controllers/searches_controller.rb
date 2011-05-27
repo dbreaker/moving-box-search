@@ -18,7 +18,7 @@ class SearchesController < ApplicationController
   def show
     @search = Search.find(params[:id])
     session[:search_id] = @search.id
-    
+    puts y @search
 #    @results = Search.find_boxes(@search.keyword)
 
     respond_to do |format|
